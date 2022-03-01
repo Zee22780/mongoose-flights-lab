@@ -12,7 +12,16 @@ function create(req, res) {
   })
 }
 
+function index(req, res) {
+  Flight.find({}, function(error, flights){
+    res.render("flights/index",{
+      flights: flights,
+    })
+  })
+}
+
 export {
   newFlight as new,
   create,
+  index,
 }
