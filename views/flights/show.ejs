@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+  <title>Flight:<%= flight.flightNo %></title>
+</head>
+<body>
+  <nav>
+    <i class="fa-solid fa-plane"></i>
+    <a href="/flights/new">Add Flight</a>
+    <a href="flights">All Flights</a>
+  </nav>
+  <h1>Flight: <%= flight.flightNo %></h1>
+  <section>
+    <div>Airline: <%= flight.airline %></div>
+    <div>Airport: <%= flight.airport %></div>
+    <div>Departs: <%= flight.departs %></div>
+  </section>
+</body>
+</html>
