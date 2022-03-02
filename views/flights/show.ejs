@@ -14,10 +14,19 @@
     <a href="flights">All Flights</a>
   </nav>
   <h1>Flight: <%= flight.flightNo %></h1>
-  <section>
-    <div>Airline: <%= flight.airline %></div>
-    <div>Airport: <%= flight.airport %></div>
-    <div>Departs: <%= flight.departs %></div>
-  </section>
+    <section>
+      <div>Airline: <%= flight.airline %></div>
+      <div>Airport: <%= flight.airport %></div>
+      <div>Departs: <%= flight.departs %></div>
+    </section>
+  <h2>Add Ticket:</h2>
+    <form 
+      action="/flights/<%= flight._id %>/details"
+      method="POST"
+    >
+    Seat: <input type="text" name="seat" placeholder="A1 - F99"><br>
+    Price: <input type="number" name="price" min="0" placeholder="$000.00"><br>
+    <button type="submit">Add Ticket</button>
+    </form>
 </body>
 </html>
