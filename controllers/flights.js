@@ -21,14 +21,6 @@ function index(req, res) {
   })
 }
 
-// function show(req, res){
-//   Flight.findById(req.params.id, function (err, flight){
-//     res.render("flights/show", {
-//       flight: flight,
-//     })
-//   })
-// }
-
 function show(req, res) {
   Flight.findById(req.params.id)
   .populate('meals')
@@ -52,10 +44,20 @@ function addTicket(req, res){
   })
 }
 
+function addMealToFlight(req, res){
+  Flight.findById(req.params.id, function(err, flight){
+    flight.meals.push(req.body.mealId)
+    flight.save(function(err){
+      res.redirect(`/flights/${flight._id}`)
+    })
+  })
+}
+
 export {
   newFlight as new,
   create,
   index,
   show,
   addTicket,
+  addMealToFlight
 }

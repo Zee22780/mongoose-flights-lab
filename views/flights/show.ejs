@@ -41,16 +41,19 @@
   <% } %> 
 
   <h3>Meal Options For This Flight:</h3>
-  <select>
-    <% meals.forEach(function(meal) { %>
+  <form action="/flights/<%= flight._id %>/meals" method="POST">
+    <select name="mealId">
+      <% meals.forEach(function(meal) { %>
       <option value="<%= meal._id %>"><%= meal.name %></option>
-    <% }) %>
-  </select>
-  <button type="submit">Add Meal</button>
-
-  <h3>Meals Selected: </h3>
-  <ul>
-    <%  %> 
-  </ul>
-
+      <% }) %>
+    </select>
+    <button type="submit">Add Meal</button>
+  </form>
+  <h3>Meals Selected For This Flight: </h3>
+    <ul>
+    <% flight.meals.forEach(meal => { %> 
+      <li><%= meal.name %></li>
+    <% }) %> 
+    </ul>
+  
 <%- include("../partials/footer") %> 
