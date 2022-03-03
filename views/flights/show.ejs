@@ -1,19 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel='stylesheet' href='/stylesheets/style.css' />
-  <title>Flight:<%= flight.flightNo %></title>
-</head>
-<body>
-  <nav>
-    <i class="fa-solid fa-plane"></i>
-    <a href="/flights/new">Add Flight</a>
-    <a href="flights">All Flights</a>
-  </nav>
-  <h1>Flight: <%= flight.flightNo %></h1>
+<%- include("../partials/html-head") %>
+<link rel='stylesheet' href='/stylesheets/style.css' />
+<%- include("../partials/nav") %>
+
+<title>Flight #: <%= flight.flightNo %></title>
+  <h1>Flight #: <%= flight.flightNo %></h1>
     <section>
       <div>Airline: <%= flight.airline %></div>
       <div>Airport: <%= flight.airport %></div>
@@ -25,8 +15,42 @@
       method="POST"
     >
     Seat: <input type="text" name="seat" placeholder="A1 - F99"><br>
-    Price: <input type="number" name="price" min="0" placeholder="$000.00"><br>
+    Price: <input type="number" name="price" min="0" placeholder="$000.00" value="currency" step="0.01"><br>
     <button type="submit">Add Ticket</button>
     </form>
-</body>
-</html>
+  <h2>Tickets Sold</h2>
+  <% if (flight.tickets.length) { %> 
+    <table>
+      <thead>
+        <tr>
+          <th>Seat</th>
+          <th>Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% flight.tickets.forEach(function(ticket){ %> 
+          <tr>
+            <td><%= ticket.seat %></td>
+            <td><%= ticket.price %></td>
+          </tr>
+        <% }) %> 
+      </tbody>
+    </table>
+  <% } else { %> 
+    <h3>No Tickets Yet</h3>
+  <% } %> 
+
+  <h3>Meal Options For This Flight:</h3>
+  <select>
+    <% meals.forEach(function(meal) { %>
+      <option value="<%= meal._id %>"><%= meal.name %></option>
+    <% }) %>
+  </select>
+  <button type="submit">Add Meal</button>
+
+  <h3>Meals Selected: </h3>
+  <ul>
+    <%  %> 
+  </ul>
+
+<%- include("../partials/footer") %> 
